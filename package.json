@@ -1,0 +1,59 @@
+{
+  "name": "redux-on",
+  "version": "0.1.0",
+  "description": "Store enhancer for redux which support accurately subscribe.",
+  "main": "lib/index.js",
+  "nextjs:main": "es/index.js",
+  "fiels": [
+    "lib",
+    "es",
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf lib dist es",
+    "lint": "eslint src",
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack"
+  },
+  "keywords": [
+    "redux",
+    "enhancer",
+    "subscribe"
+  ],
+  "author": "toplan <toplan710@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-check-es2015-constants": "^6.22.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.24.1",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-es2015-sticky-regex": "^6.24.1",
+    "babel-plugin-transform-es2015-template-literals": "^6.22.0",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+    "babel-plugin-transform-es3-property-literals": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "chai": "^3.5.0",
+    "cross-env": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.3.0",
+    "redux": "^3.6.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.4.1"
+  }
+}
