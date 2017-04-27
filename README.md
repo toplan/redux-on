@@ -1,9 +1,8 @@
 redux-on
 ==============
 
-[![build status](https://img.shields.io/travis/gaearon/redux-thunk/master.svg?style=flat-square)](https://travis-ci.org/gaearon/redux-thunk)
-[![npm version](https://img.shields.io/npm/v/redux-thunk.svg?style=flat-square)](https://www.npmjs.com/package/redux-thunk)
-[![npm downloads](https://img.shields.io/npm/dm/redux-thunk.svg?style=flat-square)](https://www.npmjs.com/package/redux-thunk)
+[![npm version](https://img.shields.io/npm/v/redux-on.svg?style=flat-square)](https://www.npmjs.com/package/redux-on)
+[![npm downloads](https://img.shields.io/npm/dm/redux-on.svg?style=flat-square)](https://www.npmjs.com/package/redux-on)
 
 Store enhancer for [redux](https://github.com/reactjs/redux) which support accurately subscribe.
 
@@ -23,8 +22,8 @@ const enhancer = compose(
   applyMiddleware(...middleware),
   accuratelySubscribe()
 )
-
 const store = createStore(reducer, initialState, enhancer)
+
 // example
 const off = store.on((prevState, state) => {
   return prevState.user !== state.user
@@ -42,9 +41,9 @@ or successful predication.
 
 ###### Arguments
 1. `type` (String): The type of action.
-2. `predicate` (Function): The predicate logic. It will be called with two parameters: `prevState`, `state`.
+2. `predicate` (Function): The logic of predication. It will be called with two parameters: `prevState`, `state`. Need to returns a boolean value.
 3. `handler` (Function): The change handler. It will be called with two parameters: `prevState`, `state`.
-4. `once` (Function): Whether to handle change only once. Default `false`.
+4. `once` (Boolean): Whether to handle change only once. Default `false`.
 
 ###### Returns
 (Function): A function that drop the change handler.
@@ -77,7 +76,7 @@ or successful predication.
 
 ###### Arguments
 1. `type` (String): The type of action.
-2. `predicate` (Function): The predicate logic. It will be called with two parameters: `prevState`, `state`.
+2. `predicate` (Function): The logic of predication. It will be called with two parameters: `prevState`, `state`. Need to returns a boolean value.
 3. `handler` (Function): The change handler. It will be called with two parameters: `prevState`, `state`.
 
 ###### Returns
@@ -88,6 +87,11 @@ or successful predication.
 store.once('CUSTOMER', (prevState, state) => {
   alert(`Hey, you are the first customer, free drinking tonight!`)
 })
+// or
+store.once(
+  (prevState, state) => !prevState.customer && state.customer,
+  (prevState, state) => alert(`Hey, you are the first customer, free drinking tonight!`)
+)
 ```
 
 ## License
