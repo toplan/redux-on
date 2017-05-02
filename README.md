@@ -1,6 +1,7 @@
 redux-on
 ==============
 
+[![build status](https://img.shields.io/travis/toplan/redux-on/master.svg?style=flat-square)](https://travis-ci.org/toplan/redux-on)
 [![npm version](https://img.shields.io/npm/v/redux-on.svg?style=flat-square)](https://www.npmjs.com/package/redux-on)
 [![npm downloads](https://img.shields.io/npm/dm/redux-on.svg?style=flat-square)](https://www.npmjs.com/package/redux-on)
 

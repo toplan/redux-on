@@ -1,10 +1,16 @@
-export default function () {
+export default function ({
+  getActionType = action => action && action.type,
+  } = {}) {
+  if (typeof getActionType !== 'function') {
+    throw new TypeError('Expected option `getActionType` to be a function.')
+  }
+
   return createStore => (reducer, preloadedState, enhancer) => {
     let actionType
     const store = createStore(reducer, preloadedState, enhancer)
 
     const dispatch = (action) => {
-      actionType = action && action.type
+      actionType = getActionType(action)
       store.dispatch(action)
     }
 
@@ -28,11 +34,9 @@ export default function () {
       let emitted = false
       let prevState = store.getState()
       const emitable = (state) => {
-        if (!type) {
-          return predicate.call(null, prevState, state)
-        }
+        if (!type) return predicate.call(null, prevState, state)
         if (type !== actionType) return false
-        if (predicate !== 'function') return true
+        if (typeof predicate !== 'function') return true
         return predicate.call(null, prevState, state)
       }
       const off = store.subscribe(() => {
